@@ -119,3 +119,17 @@ $ helm install \
 
 The default `cert-manager` configuration is good for the majority of users, but a full list of the available options can be found in the Helm chart README.
 
+### Verifying the installation
+
+Once you’ve installed `cert-manager`, you can verify it is deployed correctly by checking the cert-manager namespace for running pods:
+
+```sh
+$ kubectl get pods --namespace cert-manager
+
+NAME                                       READY   STATUS    RESTARTS   AGE
+cert-manager-5c6866597-zw7kh               1/1     Running   0          2m
+cert-manager-cainjector-577f6d9fd7-tr77l   1/1     Running   0          2m
+cert-manager-webhook-787858fcdb-nlzsq      1/1     Running   0          2m
+```
+
+You should see the `cert-manager`, `cert-manager-cainjector`, and `cert-manager-webhook` pod in a Running state. It may take a minute or so for the TLS assets required for the webhook to function to be provisioned. This may cause the webhook to take a while longer to start for the first time than other pods. If you experience problems, please check the FAQ guide.
