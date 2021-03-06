@@ -53,4 +53,7 @@ Verify that all is right by running `kubectl get pods --all-namespaces`
 
 ![image](https://user-images.githubusercontent.com/48289901/110213349-f4639980-7e9f-11eb-8a2d-e6a4c4720ebb.png)
 
-In alternatives, navigate to http://<HOST_IP>/ a 404 page will mean that the ingress controller is working properly!
+In alternatives, browse to http://<HOST_IP>/ you should see a 404 page not found:
+
+![image](https://user-images.githubusercontent.com/48289901/110215954-b0c35c80-7eac-11eb-8fcb-40ca50fce857.png)
+
