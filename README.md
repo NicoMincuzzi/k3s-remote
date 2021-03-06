@@ -41,6 +41,10 @@ Options for `install`:
 
 See even more install options by running `k3sup install --help`.
 
+**NOTE**
+
+Traefik can be configured by editing the `traefik.yaml` file. To prevent k3s from using or overwriting the modified version, deploy k3s with `--no-deploy traefik` and store the modified copy in the `k3s/server/manifests directory`. For more information, refer to the official [Traefik for Helm Configuration Parameters](https://github.com/helm/charts/tree/master/stable/traefik#configuration).
+
 ## Install Ingress Controller
 
 `kubectl apply -f ./traefik.yml`
