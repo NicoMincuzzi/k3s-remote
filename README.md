@@ -47,6 +47,6 @@ See even more install options by running `k3sup install --help`.
 
 Verify that all is right by running `kubectl get pods --all-namespaces`
 
-![image](https://user-images.githubusercontent.com/48289901/110213220-596abf80-7e9f-11eb-9e45-94d57c0cfc0f.png)
+![image](https://user-images.githubusercontent.com/48289901/110213349-f4639980-7e9f-11eb-8a2d-e6a4c4720ebb.png)
 
 In alternatives, navigate to http://<HOST_IP>/ a 404 page will mean that the ingress controller is working properly!
