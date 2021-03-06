@@ -57,3 +57,8 @@ In alternatives, browse to http://<HOST_IP>/ you should see a 404 page not found
 
 ![image](https://user-images.githubusercontent.com/48289901/110215954-b0c35c80-7eac-11eb-8fcb-40ca50fce857.png)
 
+## Deploy a dummy app
+
+Deploy a dummy app, based on nginx image, and service by running:
+
+`kubectl apply -f app.yml`
