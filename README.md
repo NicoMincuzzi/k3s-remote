@@ -40,3 +40,9 @@ Options for `install`:
 * `--datastore` - used to pass a SQL connection-string to the `--datastore-endpoint` flag of k3s. You must use [the format required by k3s in the Rancher docs](https://rancher.com/docs/k3s/latest/en/installation/ha/).
 
 See even more install options by running `k3sup install --help`.
+
+## Install Ingress Controller
+
+`kubectl apply -f ./traefik.yml`
+
+navigate to http://<HOST_IP>/ a 404 page will mean that the ingress controller is working properly!
