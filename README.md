@@ -5,7 +5,7 @@
  - [kubectl]()
  - [k3sup](https://github.com/alexellis/k3sup)
  - [k9s](https://github.com/derailed/k9s)
- - Helm v3
+ - [Helm v3](https://helm.sh/docs/intro/install/)
 
 ## What's K3S?
 
