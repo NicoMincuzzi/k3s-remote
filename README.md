@@ -114,7 +114,7 @@ $ helm install \
   --namespace cert-manager \
   --version v1.2.0 \
   --create-namespace \
-  # --set installCRDs=true
+  --set installCRDs=true
 ```
 
 The default `cert-manager` configuration is good for the majority of users, but a full list of the available options can be found in the Helm chart README.
