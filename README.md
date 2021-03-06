@@ -5,10 +5,11 @@
  - [kubectl]()
  - [k3sup](https://github.com/alexellis/k3sup)
  - [k9s](https://github.com/derailed/k9s)
+ - Helm v3
 
 ## What's K3S?
 
-Read [here](https://k3s.io/)
+Find [here](https://k3s.io/) all you need
 
 ## Install K3S by k3sup
 
@@ -62,3 +63,59 @@ In alternatives, browse to http://<HOST_IP>/ you should see a 404 page not found
 Deploy a dummy app, based on nginx image, and service by running:
 
 `kubectl apply -f app.yml`
+
+## cert-manager
+
+[cert-manager](https://cert-manager.io/docs/) is a native Kubernetes certificate management controller. It can help with issuing certificates from a variety of sources, such as Let’s Encrypt, HashiCorp Vault, Venafi, a simple signing key pair, or self signed.
+
+### Installing with Helm
+As an alternative to the YAML manifests referenced above, we also provide an official Helm chart for installing cert-manager. Read more [here](https://cert-manager.io/docs/installation/kubernetes/#installing-with-helm).
+
+#### Steps
+In order to install the Helm chart, you must follow these steps:
+
+Create the namespace for cert-manager:
+
+`$ kubectl create namespace cert-manager`
+
+Add the Jetstack Helm repository:
+
+> Warning: It is important that this repository is used to install cert-manager. The version residing in the helm stable repository is deprecated and should not be used.
+
+`$ helm repo add jetstack https://charts.jetstack.io`
+  
+Update your local Helm chart repository cache:
+
+`$ helm repo update`
+
+cert-manager requires a number of CRD resources to be installed into your cluster as part of installation.
+
+This can either be done manually, using `kubectl`, or using the `installCRDs` option when installing the Helm chart.
+
+> **Note**: If you’re using a helm version based on Kubernetes v1.18 or below (Helm v3.2) installCRDs will not work with cert-manager v0.16. For more info see the v0.16 upgrade notes
+
+**Option 1: installing CRDs with `kubectl`**
+
+Install the CustomResourceDefinition resources using kubectl:
+
+`$ kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.2.0/cert-manager.crds.yaml`
+
+**Option 2: install CRDs as part of the Helm release**
+
+To automatically install and manage the CRDs as part of your Helm release, you must add the `--set installCRDs=true` flag to your Helm installation command.
+
+Uncomment the relevant line in the next steps to enable this.
+
+To install the cert-manager Helm chart:
+
+```sh
+$ helm install \
+  cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --version v1.2.0 \
+  --create-namespace \
+  # --set installCRDs=true
+```
+
+The default `cert-manager` configuration is good for the majority of users, but a full list of the available options can be found in the Helm chart README.
+
