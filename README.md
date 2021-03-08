@@ -133,3 +133,20 @@ cert-manager-webhook-787858fcdb-nlzsq      1/1     Running   0          2m
 ```
 
 You should see the `cert-manager`, `cert-manager-cainjector`, and `cert-manager-webhook` pod in a Running state. It may take a minute or so for the TLS assets required for the webhook to function to be provisioned. This may cause the webhook to take a while longer to start for the first time than other pods. If you experience problems, please check the FAQ guide.
+
+### Configuration
+In order to configure cert-manager to begin issuing certificates, first `Issuer` or `ClusterIssuer` resources must be created. These resources represent a particular signing authority and detail how the certificate requests are going to be honored. You can read more on the concept of `Issuers` [here](https://cert-manager.io/docs/concepts/issuer/).
+
+cert-manager supports multiple ‘in-tree’ issuer types that are denoted by being in the `cert-manager.io` group. cert-manager also supports external issuers than can be installed into your cluster that belong to other groups. These external issuer types behave no different and are treated equal to in tree issuer types.
+
+When using `ClusterIssuer` resource types, ensure you understand the [Cluster Resource Namespace](https://cert-manager.io/docs/faq/cluster-resource/) where other Kubernetes resources will be referenced from.
+
+Create ClusterIssuer resource:
+
+`kubectl apply -f cluster-issuer.yml`
+
+Verify that all it's ok running:
+
+`kubectl get clusterissuer`
+
+![Schermata 2021-03-08 alle 23 23 45](https://user-images.githubusercontent.com/48289901/110389845-6507e300-8065-11eb-9294-a4af2315de61.png)
