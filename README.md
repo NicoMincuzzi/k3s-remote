@@ -141,7 +141,7 @@ cert-manager supports multiple ‘in-tree’ issuer types that are denoted by be
 
 When using `ClusterIssuer` resource types, ensure you understand the [Cluster Resource Namespace](https://cert-manager.io/docs/faq/cluster-resource/) where other Kubernetes resources will be referenced from.
 
-Create ClusterIssuer resource:
+Create `ClusterIssuer` resource:
 
 `kubectl apply -f cluster-issuer.yml`
 
@@ -150,3 +150,7 @@ Verify that all it's ok running:
 `kubectl get clusterissuer`
 
 ![Schermata 2021-03-08 alle 23 23 45](https://user-images.githubusercontent.com/48289901/110389845-6507e300-8065-11eb-9294-a4af2315de61.png)
+
+## Expose app to extern via Ingress
+
+`kubectl apply -f ingress.yml`
