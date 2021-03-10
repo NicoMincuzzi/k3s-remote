@@ -62,7 +62,7 @@ In alternatives, browse to http://<HOST_IP>/ you should see a 404 page not found
 
 Deploy a dummy app, based on nginx image, and service by running:
 
-`kubectl apply -f app.yml`
+`kubectl apply -f dummy_app.yml`
 
 ## cert-manager
 
