@@ -19,9 +19,9 @@ k3sup install \
   --ip $IP \
   --user root \
   --ssh-key <SSH_PATH> \
-  --merge 
-  --local-path $HOME/.kube/config 
-  --context my-k8s 
+  --merge \
+  --local-path $HOME/.kube/config \
+  --context my-k8s \
   --k3s-extra-args '--no-deploy traefik'
 ```
 
