@@ -19,9 +19,9 @@ k3sup install \
   --ip $IP \
   --user root \
   --ssh-key <SSH_PATH> \
-  --merge 
-  --local-path $HOME/.kube/config 
-  --context my-k8s 
+  --merge \
+  --local-path $HOME/.kube/config \
+  --context my-k8s \
   --k3s-extra-args '--no-deploy traefik'
 ```
 
@@ -62,7 +62,7 @@ In alternatives, browse to http://<HOST_IP>/ you should see a 404 page not found
 
 Deploy a dummy app, based on nginx image, and service by running:
 
-`kubectl apply -f app.yml`
+`kubectl apply -f dummy_app.yml`
 
 ## cert-manager
 
