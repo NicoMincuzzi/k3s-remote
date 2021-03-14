@@ -64,6 +64,10 @@ Deploy a dummy app, based on nginx image, and service by running:
 
 `kubectl apply -f dummy_app.yml`
 
+Verify your app responds correctly:
+
+`kubectl port-forward pod/<POD_NAME> <YOUR_LOCAL_PORT>:<POD_PORT>`
+
 ## cert-manager
 
 [cert-manager](https://cert-manager.io/docs/) is a native Kubernetes certificate management controller. It can help with issuing certificates from a variety of sources, such as Let’s Encrypt, HashiCorp Vault, Venafi, a simple signing key pair, or self signed.
