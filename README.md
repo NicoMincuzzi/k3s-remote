@@ -149,7 +149,7 @@ Verify that all it's ok running:
 
 `kubectl get clusterissuer`
 
-![Schermata 2021-03-08 alle 23 23 45](https://user-images.githubusercontent.com/48289901/110389845-6507e300-8065-11eb-9294-a4af2315de61.png)
+![image](https://user-images.githubusercontent.com/48289901/111067158-2dfd5b80-84c3-11eb-94e9-70b77d0fb2e2.png)
 
 ## Expose app to extern via Ingress
 
