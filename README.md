@@ -157,4 +157,6 @@ Verify that all it's ok running:
 
 ## Expose app to extern via Ingress
 
+Finally, expose your app to extern running the following command:
+
 `kubectl apply -f ingress.yml`
