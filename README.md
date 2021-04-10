@@ -160,3 +160,9 @@ Verify that all it's ok running:
 Finally, expose your app to extern running the following command:
 
 `kubectl apply -f ingress.yml`
+
+## How to Contribute
+Make a pull request...
+
+## License
+Distributed under Apache-2.0 License, please see license file within the code for more details.
