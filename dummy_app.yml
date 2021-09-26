@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: gowebapp-deployment
   labels:
-    app: nginx
+    app: gowebapp
 spec:
   selector:
     matchLabels:
-      name: nginx
+      name: gowebapp
   template:
     metadata:
       labels:
-        name: nginx
+        name: gowebapp
     spec:
       containers:
-        - name: nginx
-          image: nginx
+        - name: gowebapp
+          image: nicomincuzzi/go-webapp:0.1.0
           resources:
             limits:
               memory: '64Mi'
@@ -23,18 +23,18 @@ spec:
             requests:
               cpu: '50m'
           ports:
-            - containerPort: 80
+            - containerPort: 3030
               name: 'http'
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: gowebapp-service
 spec:
   type: ClusterIP
   selector:
-    name: nginx
+    name: gowebapp
   ports:
-    - port: 80
+    - port: 3030
       targetPort: http
       name: http

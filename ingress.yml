@@ -5,20 +5,20 @@ metadata:
     kubernetes.io/ingress.class: 'traefik'
     cert-manager.io/cluster-issuer: 'letsencrypt-prod'
     traefik.ingress.kubernetes.io/redirect-entry-point: https
-  name: nginx
+  name: gowebapp
 spec:
   rules:
-    - host: nginx.dev.pettycashmate.co
+    - host: gowebapp.dev.pettycashmate.co
       http:
         paths:
           - path: '/'
             pathType: Prefix
             backend:
               service:
-                name: nginx-service
+                name: gowebapp-service
                 port:
-                  number: 80
+                  number: 3030
   tls:
     - hosts:
-        - nginx.dev.pettycashmate.co
-      secretName: nginx.dev.pettycashmate.co-tls
+        - gowebapp.dev.pettycashmate.co
+      secretName: gowebapp.dev.pettycashmate.co-tls
