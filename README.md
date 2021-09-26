@@ -48,7 +48,9 @@ Traefik can be configured by editing the `traefik.yaml` file. To prevent k3s fro
 
 ## Install Ingress Controller
 
-`kubectl apply -f ./traefik.yml`
+```sh
+$ kubectl apply -f ./traefik.yml
+```
 
 Verify that all is right by running `kubectl get pods --all-namespaces`
 
@@ -62,11 +64,15 @@ In alternatives, browse to http://<HOST_IP>/ you should see a 404 page not found
 
 Deploy a dummy app, based on `nicomincuzzi/go-webapp` image, and service by running:
 
-`kubectl apply -f dummy_app.yml`
+```sh
+$ kubectl apply -f dummy_app.yml
+```
 
 Verify your app responds correctly:
 
-`kubectl port-forward pod/<POD_NAME> <YOUR_LOCAL_PORT>:<POD_PORT>`
+```sh
+$ kubectl port-forward pod/<POD_NAME> <YOUR_LOCAL_PORT>:<POD_PORT>
+```
 
 ## cert-manager
 
