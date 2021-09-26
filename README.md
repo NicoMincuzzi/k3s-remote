@@ -64,6 +64,10 @@ Deploy a dummy app, based on `nicomincuzzi/go-webapp` image, and service by runn
 
 `kubectl apply -f dummy_app.yml`
 
+Verify your app responds correctly:
+
+`kubectl port-forward pod/<POD_NAME> <YOUR_LOCAL_PORT>:<POD_PORT>`
+
 ## cert-manager
 
 [cert-manager](https://cert-manager.io/docs/) is a native Kubernetes certificate management controller. It can help with issuing certificates from a variety of sources, such as Let’s Encrypt, HashiCorp Vault, Venafi, a simple signing key pair, or self signed.
@@ -149,8 +153,16 @@ Verify that all it's ok running:
 
 `kubectl get clusterissuer`
 
-![Schermata 2021-03-08 alle 23 23 45](https://user-images.githubusercontent.com/48289901/110389845-6507e300-8065-11eb-9294-a4af2315de61.png)
+![image](https://user-images.githubusercontent.com/48289901/111067158-2dfd5b80-84c3-11eb-94e9-70b77d0fb2e2.png)
 
 ## Expose app to extern via Ingress
 
+Finally, expose your app to extern running the following command:
+
 `kubectl apply -f ingress.yml`
+
+## How to Contribute
+Make a pull request...
+
+## License
+Distributed under Apache-2.0 License, please see license file within the code for more details.
