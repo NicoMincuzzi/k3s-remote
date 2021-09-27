@@ -13,7 +13,7 @@ A guide to install K3s with a custom Traefik Ingress Control.
 
 Find [here](https://k3s.io/) all you need
 
-## Install K3S by k3sup
+## 1. Install K3S by k3sup
 
 ```sh
 export IP=<HOST_IP>
@@ -48,7 +48,7 @@ See even more install options by running `k3sup install --help`.
 
 Traefik can be configured by editing the `traefik.yaml` file. To prevent k3s from using or overwriting the modified version, deploy k3s with `--no-deploy traefik` and store the modified copy in the `k3s/server/manifests directory`. For more information, refer to the official [Traefik for Helm Configuration Parameters](https://github.com/helm/charts/tree/master/stable/traefik#configuration).
 
-## Install Ingress Controller
+## 2. Install Ingress Controller
 
 ```sh
 $ kubectl apply -f ./traefik.yml
@@ -62,7 +62,7 @@ In alternatives, browse to http://<HOST_IP>/ you should see a 404 page not found
 
 ![image](https://user-images.githubusercontent.com/48289901/110215954-b0c35c80-7eac-11eb-8fcb-40ca50fce857.png)
 
-## Deploy a dummy app
+## 3. Deploy a dummy app
 
 Deploy a dummy app, based on `nicomincuzzi/go-webapp` image, and service by running:
 
@@ -76,7 +76,7 @@ Verify your app responds correctly:
 $ kubectl port-forward pod/<POD_NAME> <YOUR_LOCAL_PORT>:<POD_PORT>
 ```
 
-## cert-manager
+## 4. cert-manager
 
 [cert-manager](https://cert-manager.io/docs/) is a native Kubernetes certificate management controller. It can help with issuing certificates from a variety of sources, such as Let’s Encrypt, HashiCorp Vault, Venafi, a simple signing key pair, or self signed.
 
@@ -163,7 +163,7 @@ Verify that all it's ok running:
 
 ![image](https://user-images.githubusercontent.com/48289901/111067158-2dfd5b80-84c3-11eb-94e9-70b77d0fb2e2.png)
 
-## Expose app to extern via Ingress
+## 5. Expose app to extern via Ingress
 
 Finally, expose your app to extern running the following command:
 
