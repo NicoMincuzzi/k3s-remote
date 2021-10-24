@@ -48,7 +48,7 @@ See even more install options by running `k3sup install --help`.
 
 [Traefik](https://github.com/traefik/traefik) can be configured by editing the `traefik.yaml` file. To prevent k3s from using or overwriting the modified version, deploy k3s with `--no-deploy traefik` and store the modified copy in the `k3s/server/manifests directory`. For more information, refer to the official [Traefik for Helm Configuration Parameters](https://github.com/helm/charts/tree/master/stable/traefik#configuration).
 
-### Extra
+### 1.1 Extra
 
 Let's build a 3-node Kubernetes cluster with Rancher's k3s project and k3sup, which uses `ssh` to make the whole process quick and painless.
 
@@ -100,15 +100,35 @@ master  Ready    master   15h   v1.19.15+k3s2   192.168.1.45    <none>        Ub
 You can add additional hosts in order to expand our available capacity.
 
 Run the following:
-```sh
-$ k3sup join --ip <WORKER_1_IP> --server-ip <SERVER_IP> --user root --ssh-key <SSH_PATH>
-
-$ k3sup join --ip <WORKER_2_IP> --server-ip <SERVER_IP> --user root --ssh-key <SSH_PATH>
-```
 
 ```sh
-kubectl taint nodes <SERVER_NAME> node-role.kubernetes.io/master=true:NoSchedule
+$ k3sup join --ip <WORKER_X_IP> --server-ip <SERVER_IP> --user root --ssh-key <SSH_PATH>
 ```
+
+Replace <WORKER_X_IP> with each worker ip address.
+
+**3. Optional taint**
+
+Unlike k8s, the master node here is eligible to run containers destined for worker nodes as it does not have the `node-role.kubernetes.io/master=true:NoSchedule` taint that's typically present.
+
+Tainting your master node is recommend to prevent workloads to be scheduled on it, unless you are only running a single-node k3s cluster on a Raspberry Pi.
+
+```sh
+$ kubectl taint nodes <SERVER_NAME> node-role.kubernetes.io/master=true:NoSchedule
+```
+
+Replace <SERVER_NAME> with your k3s server node `NAME` shown in the `kubectl get nodes` output.
+
+**4. Optional labels**
+
+If you have noticed, other than master, the other nodes have `<none>` as their role. 
+- k3s by default does not label the agent nodes with the `worker` role, which k8s does. I prefer to label the agent nodes as `worker` just to make the visual experience as close as possible to k8s.
+
+```sh
+$ kubectl label node <WORKER_NAME> node-role.kubernetes.io/worker=''
+```
+
+Replace <WORKER_NAME> with the hostname of your nodes.
 
 ## 2. Install Ingress Controller
 
