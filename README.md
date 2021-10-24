@@ -48,6 +48,46 @@ See even more install options by running `k3sup install --help`.
 
 [Traefik](https://github.com/traefik/traefik) can be configured by editing the `traefik.yaml` file. To prevent k3s from using or overwriting the modified version, deploy k3s with `--no-deploy traefik` and store the modified copy in the `k3s/server/manifests directory`. For more information, refer to the official [Traefik for Helm Configuration Parameters](https://github.com/helm/charts/tree/master/stable/traefik#configuration).
 
+### Extra
+
+Let's build a 3-node Kubernetes cluster with Rancher's k3s project and k3sup, which uses `ssh` to make the whole process quick and painless.
+
+**Create the server**
+In Kubernetes terminology, the server is often called the master.
+
+```sh
+export IP=<HOST_IP>
+k3sup install \
+  --ip $IP \
+  --user root \
+  --ssh-key <SSH_PATH> \
+  --merge \
+  --local-path $HOME/.kube/config \
+  --context my-k8s \
+  --k3s-extra-args '--no-deploy traefik'
+```
+
+k3s is so fast to start up, that it may be ready for use after the command has completed.
+
+Test it out:
+```
+export KUBECONFIG=`pwd`/kubeconfig
+
+kubectl get node -o wide
+NAME    STATUS   ROLES    AGE   VERSION         INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+master  Ready    master   15h   v1.19.15+k3s2   192.168.1.45    <none>        Ubuntu 20.04.3 LTS   5.4.0-1045-raspi    containerd://1.4.11-k3s1
+```
+
+**Extend the cluster**
+You can add additional hosts in order to expand our available capacity.
+
+Run the following:
+```
+k3sup join --ip <WORKER_1_IP> --server-ip <SERVER_IP> --user root --ssh-key <SSH_PATH>
+
+k3sup join --ip <WORKER_2_IP> --server-ip <SERVER_IP> --user root --ssh-key <SSH_PATH>
+```
+
 ## 2. Install Ingress Controller
 
 ```sh
