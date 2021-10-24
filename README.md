@@ -1,6 +1,6 @@
 # K3S-remote
 
-A guide to install K3s with a custom Traefik Ingress Control.
+A guide to install K3s on VM or Raspberry Pi with a custom Traefik Ingress Control.
 
 ## Prerequisites
 
