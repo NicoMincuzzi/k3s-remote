@@ -67,7 +67,7 @@ Let's build a 3-node Kubernetes cluster with Rancher's k3s project and k3sup, wh
 >
 > More details are available at: https://microk8s.io/docs/install-alternatives#heading--arm
 
-**Create the server**
+**1. Create the server**
 
 In Kubernetes terminology, the server is often called the master.
 
@@ -95,7 +95,8 @@ NAME    STATUS   ROLES    AGE   VERSION         INTERNAL-IP     EXTERNAL-IP   OS
 master  Ready    master   15h   v1.19.15+k3s2   192.168.1.45    <none>        Ubuntu 20.04.3 LTS   5.4.0-1045-raspi    containerd://1.4.11-k3s1
 ```
 
-**Extend the cluster**
+**2. Extend the cluster**
+
 You can add additional hosts in order to expand our available capacity.
 
 Run the following:
