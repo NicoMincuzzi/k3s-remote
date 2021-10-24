@@ -52,20 +52,23 @@ See even more install options by running `k3sup install --help`.
 
 Let's build a 3-node Kubernetes cluster with Rancher's k3s project and k3sup, which uses `ssh` to make the whole process quick and painless.
 
-Running k3s/MicroK8s on some ARM hardware may run into difficulties because `cgroups` are not enabled by default. 
-- This can be remedied on the Rasberry Pi by editing the boot parameters:
-
-  `sudo vi /boot/firmware/cmdline.txt`
-
-**Note:** In some *Raspberry Pi Linux distributions* the boot parameters are in `/boot/firmware/nobtcmd.txt`.
-
-And adding the following:
-
-`cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory` to address disk performance issues often present on Raspberry Pi see the troubleshooting section.
-
-More details are available at: https://microk8s.io/docs/install-alternatives#heading--arm
+**Note**
+> Running k3s/MicroK8s on some ARM hardware may run into difficulties because `cgroups` are not enabled by default. 
+> 
+> This can be remedied on Ubuntu distribution by editing the boot parameters:
+>
+>  `sudo vi /boot/firmware/cmdline.txt`
+>
+> **Note:** In some *Raspberry Pi Linux distributions* the boot parameters are in `/boot/cmdline.txt` or `/boot/firmware/nobtcmd.txt`.
+>
+> And adding the following:
+>
+> `cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory` to address disk performance issues often present on Raspberry Pi see the troubleshooting section.
+>
+> More details are available at: https://microk8s.io/docs/install-alternatives#heading--arm
 
 **Create the server**
+
 In Kubernetes terminology, the server is often called the master.
 
 ```sh
