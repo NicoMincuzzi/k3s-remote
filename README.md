@@ -56,8 +56,9 @@ Let's build a 3-node Kubernetes cluster with Rancher's k3s project and k3sup, wh
 In Kubernetes terminology, the server is often called the master.
 
 ```sh
-export IP=<HOST_IP>
-k3sup install \
+$ export IP=<HOST_IP>
+
+$ k3sup install \
   --ip $IP \
   --user root \
   --ssh-key <SSH_PATH> \
@@ -70,10 +71,10 @@ k3sup install \
 k3s is so fast to start up, that it may be ready for use after the command has completed.
 
 Test it out:
-```
-export KUBECONFIG=`pwd`/kubeconfig
+```sh
+$ export KUBECONFIG=`pwd`/kubeconfig
 
-kubectl get node -o wide
+$ kubectl get node -o wide
 NAME    STATUS   ROLES    AGE   VERSION         INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
 master  Ready    master   15h   v1.19.15+k3s2   192.168.1.45    <none>        Ubuntu 20.04.3 LTS   5.4.0-1045-raspi    containerd://1.4.11-k3s1
 ```
@@ -82,10 +83,14 @@ master  Ready    master   15h   v1.19.15+k3s2   192.168.1.45    <none>        Ub
 You can add additional hosts in order to expand our available capacity.
 
 Run the following:
-```
-k3sup join --ip <WORKER_1_IP> --server-ip <SERVER_IP> --user root --ssh-key <SSH_PATH>
+```sh
+$ k3sup join --ip <WORKER_1_IP> --server-ip <SERVER_IP> --user root --ssh-key <SSH_PATH>
 
-k3sup join --ip <WORKER_2_IP> --server-ip <SERVER_IP> --user root --ssh-key <SSH_PATH>
+$ k3sup join --ip <WORKER_2_IP> --server-ip <SERVER_IP> --user root --ssh-key <SSH_PATH>
+```
+
+```sh
+kubectl taint nodes <SERVER_NAME> node-role.kubernetes.io/master=true:NoSchedule
 ```
 
 ## 2. Install Ingress Controller
