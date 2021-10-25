@@ -107,9 +107,8 @@ $ k3sup join --ip <WORKER_X_IP> --server-ip <SERVER_IP> --user root --ssh-key <S
 
 Replace <WORKER_X_IP> with each worker ip address.
 
-**3. Optional taint**
-
-Unlike k8s, the master node here is eligible to run containers destined for worker nodes as it does not have the `node-role.kubernetes.io/master=true:NoSchedule` taint that's typically present.
+**3. Control plane node isolation: `taint`**
+Unlike [k8s](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/#control-plane-node-isolation), the master node here is eligible to run containers destined for worker nodes as it does not have the `node-role.kubernetes.io/master=true:NoSchedule` taint that's typically present.
 
 Tainting your master node is recommend to prevent workloads to be scheduled on it, unless you are only running a single-node k3s cluster on a Raspberry Pi.
 
