@@ -4,24 +4,20 @@ metadata:
   name: traefik
   namespace: kube-system
 spec:
-  chart: https://%{KUBERNETES_API}%/static/charts/traefik-1.81.0.tgz
+  repo: https://traefik.github.io/charts
+  chart: traefik
+  version: "v39.0.2"
+  targetNamespace: kube-system
   valuesContent: |-
-    accessLogs:
-      enabled: true
-      format: "json"
-      fields:
-        defaultMode: keep
-    rbac:
-      enabled: true
-    ssl:
-      enabled: true
+    logs:
+      access:
+        enabled: true
+        format: json
+        fields:
+          defaultMode: keep
     metrics:
       prometheus:
-        enabled: true
-    kubernetes:
-      ingressEndpoint:
-        useDefaultPublishedService: true
-    image: "rancher/library-traefik"
+        entryPoint: metrics
     tolerations:
       - key: "CriticalAddonsOnly"
         operator: "Exists"
