@@ -1,0 +1,22 @@
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Kubernetes
+kubeconfig
+*.kubeconfig
+
+# Environment and secrets
+.env
+*.pem
+*.key
+
+# Helm
+charts/*.tgz
