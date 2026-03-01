@@ -9,7 +9,7 @@ K3S-Remote is a documentation and configuration repository for deploying lightwe
 ## Repository Structure
 
 - **README.md** — Complete step-by-step installation guide (K3s setup, Traefik, cert-manager, app deployment)
-- **traefik.yml** — HelmChart resource for Traefik v1.81.0 ingress controller (deployed to `kube-system` namespace)
+- **traefik.yml** — HelmChart resource for Traefik v3 ingress controller (chart v39.0.2, deployed to `kube-system` namespace)
 - **cluster-issuer.yml** — Let's Encrypt ClusterIssuer using ACME HTTP-01 challenge with Traefik
 - **dummy_app.yml** — Sample Go webapp Deployment + ClusterIP Service (image: `nicomincuzzi/go-webapp:0.1.0`, port 3030)
 - **ingress.yml** — Ingress resource routing `gowebapp.dev.pettycashmate.co` to the dummy app with TLS

@@ -42,7 +42,7 @@ K3s is a lightweight, fully conformant Kubernetes distribution designed for reso
 
 | File | Description |
 |------|-------------|
-| `traefik.yml` | HelmChart resource for Traefik v1.81.0 ingress controller (deployed to `kube-system` namespace) |
+| `traefik.yml` | HelmChart resource for Traefik v3 ingress controller (chart v39.0.2, deployed to `kube-system` namespace) |
 | `cluster-issuer.yml` | Let's Encrypt ClusterIssuer using ACME HTTP-01 challenge with Traefik |
 | `dummy_app.yml` | Sample Go webapp Deployment + ClusterIP Service (`nicomincuzzi/go-webapp:0.1.0`, port 3030) |
 | `ingress.yml` | Ingress resource routing `gowebapp.dev.pettycashmate.co` to the dummy app with TLS |
@@ -84,7 +84,7 @@ Options for `install`:
 
 See even more install options by running `k3sup install --help`.
 
-> **Note:** [Traefik](https://github.com/traefik/traefik) can be configured by editing the `traefik.yaml` file. To prevent k3s from using or overwriting the modified version, deploy k3s with `--disable traefik` and store the modified copy in the `k3s/server/manifests` directory. For more information, refer to the official [Traefik for Helm Configuration Parameters](https://github.com/helm/charts/tree/master/stable/traefik#configuration).
+> **Note:** [Traefik](https://github.com/traefik/traefik) can be configured by editing the `traefik.yml` file. To prevent k3s from using or overwriting the modified version, deploy k3s with `--disable traefik` and store the modified copy in the `k3s/server/manifests` directory. For more information, refer to the official [Traefik Helm Chart](https://github.com/traefik/traefik-helm-chart).
 
 ### 1.1 Multi-Node Cluster Setup
 
@@ -167,7 +167,7 @@ Replace `<WORKER_NAME>` with the hostname of your nodes.
 
 ## 2. Install Ingress Controller
 
-Deploy the custom Traefik ingress controller. This replaces the default K3s Traefik installation (which we disabled in step 1) with a version we can configure.
+Deploy the custom Traefik v3 ingress controller from the official Helm chart repository. This replaces the default K3s Traefik installation (which we disabled in step 1) with a version we can configure.
 
 ```sh
 kubectl apply -f traefik.yml
