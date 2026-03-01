@@ -53,7 +53,7 @@ Find [here](https://k3s.io/) all you need.
 
 ## 1. Install K3s with k3sup
 
-This step installs K3s on a remote machine via SSH. The `--no-deploy traefik` flag prevents the default Traefik installation so we can deploy a custom version in the next step.
+This step installs K3s on a remote machine via SSH. The `--disable traefik` flag prevents the default Traefik installation so we can deploy a custom version in the next step.
 
 ```sh
 export IP=<HOST_IP>
@@ -64,7 +64,7 @@ k3sup install \
   --merge \
   --local-path $HOME/.kube/config \
   --context my-k8s \
-  --k3s-extra-args '--no-deploy traefik'
+  --k3s-extra-args '--disable traefik'
 ```
 
 Options for `install`:
@@ -76,7 +76,7 @@ Options for `install`:
 - `--merge` - Merge config into existing file instead of overwriting (e.g. to add config to the default kubectl config, use `--local-path ~/.kube/config --merge`).
 - `--context` - default is `default` - set the name of the kubeconfig context.
 - `--ssh-port` - default is `22`, but you can specify an alternative port i.e. `2222`
-- `--k3s-extra-args` - Optional extra arguments to pass to k3s installer, wrapped in quotes, i.e. `--k3s-extra-args '--no-deploy traefik'` or `--k3s-extra-args '--docker'`. For multiple args combine them within single quotes `--k3s-extra-args '--no-deploy traefik --docker'`.
+- `--k3s-extra-args` - Optional extra arguments to pass to k3s installer, wrapped in quotes, i.e. `--k3s-extra-args '--disable traefik'` or `--k3s-extra-args '--docker'`. For multiple args combine them within single quotes `--k3s-extra-args '--disable traefik --docker'`.
 - `--k3s-version` - set the specific version of k3s, i.e. `v0.9.1`
 - `--ipsec` - Enforces the optional extra argument for k3s: `--flannel-backend` option: `ipsec`
 - `--print-command` - Prints out the command, sent over SSH to the remote computer
@@ -84,7 +84,7 @@ Options for `install`:
 
 See even more install options by running `k3sup install --help`.
 
-> **Note:** [Traefik](https://github.com/traefik/traefik) can be configured by editing the `traefik.yaml` file. To prevent k3s from using or overwriting the modified version, deploy k3s with `--no-deploy traefik` and store the modified copy in the `k3s/server/manifests` directory. For more information, refer to the official [Traefik for Helm Configuration Parameters](https://github.com/helm/charts/tree/master/stable/traefik#configuration).
+> **Note:** [Traefik](https://github.com/traefik/traefik) can be configured by editing the `traefik.yaml` file. To prevent k3s from using or overwriting the modified version, deploy k3s with `--disable traefik` and store the modified copy in the `k3s/server/manifests` directory. For more information, refer to the official [Traefik for Helm Configuration Parameters](https://github.com/helm/charts/tree/master/stable/traefik#configuration).
 
 ### 1.1 Multi-Node Cluster Setup
 
@@ -118,7 +118,7 @@ k3sup install \
   --merge \
   --local-path $HOME/.kube/config \
   --context my-k8s \
-  --k3s-extra-args '--no-deploy traefik'
+  --k3s-extra-args '--disable traefik'
 ```
 
 k3s is so fast to start up, that it may be ready for use after the command has completed.
